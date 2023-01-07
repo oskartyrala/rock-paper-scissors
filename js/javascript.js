@@ -4,7 +4,7 @@
 // Generate computer's choice of rock, paper, scissors;
 function getComputerChoice() { 
     let computerChoice = Math.floor(Math.random() * 3);
-    
+
 // Return computer's choice;
     if (computerChoice === 0) {
         return "rock";
@@ -16,7 +16,10 @@ function getComputerChoice() {
 }
 
 // Ask the player's choice of rock, paper, scissors;
-
+function getPlayerChoice() {
+    return prompt("Select your weapon!").toLowerCase();
+}
+    
 // Store player's choice in a variable;
 // Compare the player's choice to the computer's choice;
 // Log the result and the winner;
