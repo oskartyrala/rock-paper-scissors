@@ -65,7 +65,7 @@ if (playerChoice === "rock") {
         console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You win!`);
         return "playerWin";
     } else if (computerChoice === "scissors") {
-        console.log(`You chose ${playerChoice}. You chose ${playerChoice}. The computer chose ${computerChoice}. It's a draw!`);
+        console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. It's a draw!`);
         return "draw";
     }
 
@@ -78,11 +78,14 @@ if (playerChoice === "rock") {
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
+    let round = 0;
 
 // If one of the competitors reaches 3 points, end the game and declare the winner;
 
 while (playerScore < 3 && computerScore < 3) {
 // Update the total score;
+round++;
+console.group(`Round ${round}`)
 let roundResult = playRound(getPlayerChoice(), getComputerChoice());
 if (roundResult === "playerWin") {
     ++playerScore;
@@ -92,10 +95,19 @@ if (roundResult === "playerWin") {
 
 // Log the total score
 console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
+
+console.groupEnd(`Round ${round}`);
 }
+
+
+
+// Declare the winner
+
+console.group("Game over");
+if (playerScore === 3) {
+    console.log("Congratulations, you win!");
+} else if (computerScore === 3) {
+    console.log("The machine won. Better luck next time!");
 }
-
-
-
-
-
+console.groupEnd("Game over");
+}
