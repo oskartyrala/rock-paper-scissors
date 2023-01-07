@@ -1,5 +1,5 @@
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the players reaches 3 points, at which point exit the loop and declare the winner.
-function playGame() {
+function playTo3() {
     let playerScore = 0;
     let computerScore = 0;
     let round = 0;
@@ -20,10 +20,15 @@ console.groupEnd(`Round ${round}`);
 
 // Declare the winner
 console.group("Game over");
-if (playerScore === 3) {
-    console.log("Congratulations, you win!");
-} else if (computerScore === 3) {
-    console.log("The machine won. Better luck next time!");
+if (playerScore > computerScore) {
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`Congratulations, you win!`)
+} else if (playerScore < computerScore) {
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`The machine won. Better luck next time!`)
+} else {
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`It's a draw!`)
 }
 console.groupEnd("Game over");
 }
@@ -50,11 +55,14 @@ console.groupEnd(`Round ${i}`);
 // Declare the winner.
 console.group("Game over");
 if (playerScore > computerScore) {
-    console.log("Congratulations, you win!");
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`Congratulations, you win!`)
 } else if (playerScore < computerScore) {
-    console.log("The machine won. Better luck next time!");
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`The machine won. Better luck next time!`)
 } else {
-    console.log("It's a draw!");
+    console.log(`The final score is ${playerScore}:${computerScore}.`);
+    console.log(`It's a draw!`)
 }
 console.groupEnd("Game over");
 }
