@@ -28,6 +28,37 @@ if (playerScore === 3) {
 console.groupEnd("Game over");
 }
 
+// Play a game of rock, paper, scissors. Play 5 rounds, at which point exit the loop and declare the winner.
+function play5Rounds() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+// Play exactly 5 rounds.
+for(i = 1; i < 6; i++) {
+console.group(`Round ${i}`)
+const roundResult = playRound(getPlayerChoice(), getComputerChoice());
+if (roundResult === "playerWin") {
+    ++playerScore;
+} else if (roundResult === "computerWin") {
+    ++computerScore;
+}
+console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
+console.groupEnd(`Round ${i}`);
+
+}
+
+// Declare the winner.
+console.group("Game over");
+if (playerScore > computerScore) {
+    console.log("Congratulations, you win!");
+} else if (playerScore < computerScore) {
+    console.log("The machine won. Better luck next time!");
+} else {
+    console.log("It's a draw!");
+}
+console.groupEnd("Game over");
+}
+
 // Play one round of rock, paper, scissors
 function playRound(playerChoice, computerChoice) {
 
