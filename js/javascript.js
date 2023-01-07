@@ -8,7 +8,7 @@ function playGame() {
 while (playerScore < 3 && computerScore < 3) {
 round++;
 console.group(`Round ${round}`)
-let roundResult = playRound(getPlayerChoice(), getComputerChoice());
+const roundResult = playRound(getPlayerChoice(), getComputerChoice());
 if (roundResult === "playerWin") {
     ++playerScore;
 } else if (roundResult === "computerWin") {
@@ -71,7 +71,7 @@ function playRound(playerChoice, computerChoice) {
 
 // Ask the player's choice of rock, paper, scissors
 function getPlayerChoice() {
-    let playerChoice = prompt("Select your weapon!").toLowerCase();
+    const playerChoice = prompt("Select your weapon!").toLowerCase();
 
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
         return playerChoice;
@@ -83,7 +83,7 @@ function getPlayerChoice() {
 
 // Generate computer's choice of rock, paper, scissors
 function getComputerChoice() { 
-    let computerChoice = Math.floor(Math.random() * 3);
+    const computerChoice = Math.floor(Math.random() * 3);
 
     if (computerChoice === 0) {
         return "rock";
