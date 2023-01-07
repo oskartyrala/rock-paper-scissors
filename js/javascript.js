@@ -17,10 +17,17 @@ function getComputerChoice() {
 
 // Ask the player's choice of rock, paper, scissors;
 function getPlayerChoice() {
-    return prompt("Select your weapon!").toLowerCase();
+    let playerChoice = prompt("Select your weapon!").toLowerCase();
+// Return player's choice;
+    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+        return playerChoice;
+    } else {
+        alert("Please select rock, paper, or scissors");
+        return getPlayerChoice();
+    }
 }
     
-// Store player's choice in a variable;
+
 // Compare the player's choice to the computer's choice;
 // Log the result and the winner;
 // Update the total score;
