@@ -8,31 +8,31 @@ function playTo3() {
 // Keep playing rounds until one of the competitors reaches 3 points.
 while (playerScore < 3 && computerScore < 3) {
     roundNumber++;
-    console.group(`Round ${roundNumber}`)
+    console.group(`Round ${roundNumber}`);
     const roundResult = playRound(getPlayerChoice(), getComputerChoice());
     if (roundResult === "playerWin") {
         ++playerScore;
     } else if (roundResult === "computerWin") {
         ++computerScore;
-    }
-    console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
+    };
+    console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`);
     console.groupEnd(`Round ${roundNumber}`);
-}
+};
 
 // Declare the winner
 console.group("Game over");
 if (playerScore > computerScore) {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`Congratulations, you win!`)
+    console.log(`Congratulations, you win!`);
 } else if (playerScore < computerScore) {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`The machine won. Better luck next time!`)
+    console.log(`The machine won. Better luck next time!`);
 } else {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`It's a draw!`)
+    console.log(`It's a draw!`);
 }
 console.groupEnd("Game over");
-}
+};
 
 // Play a game of rock, paper, scissors. Play 5 rounds, at which point exit the 
 // loop and declare the winner.
@@ -42,32 +42,32 @@ function play5Rounds() {
 
 // Play exactly 5 rounds.
 for(i = 1; i < 6; i++) {
-console.group(`Round ${i}`)
+console.group(`Round ${i}`);
 const roundResult = playRound(getPlayerChoice(), getComputerChoice());
 if (roundResult === "playerWin") {
     ++playerScore;
 } else if (roundResult === "computerWin") {
     ++computerScore;
-}
-console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
+};
+console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`);
 console.groupEnd(`Round ${i}`);
 
-}
+};
 
 // Declare the winner.
 console.group("Game over");
 if (playerScore > computerScore) {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`Congratulations, you win!`)
+    console.log(`Congratulations, you win!`);
 } else if (playerScore < computerScore) {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`The machine won. Better luck next time!`)
+    console.log(`The machine won. Better luck next time!`);
 } else {
     console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`It's a draw!`)
+    console.log(`It's a draw!`);
 }
 console.groupEnd("Game over");
-}
+};
 
 // Play one round of rock, paper, scissors
 function playRound(playerChoice, computerChoice) {
@@ -116,8 +116,8 @@ function playRound(playerChoice, computerChoice) {
                 The computer chose ${computerChoice}. It's a draw!`);
             return "draw";
         }
-    }
-    }
+    };
+    };
 
 // Ask the player's choice of rock, paper, scissors
 function getPlayerChoice() {
@@ -143,5 +143,5 @@ function getComputerChoice() {
         return "paper";
     } else if (computerChoice === 2) {
         return "scissors";
-    }
-}
+    };
+};
