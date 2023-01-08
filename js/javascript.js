@@ -2,12 +2,12 @@
 function playTo3() {
     let playerScore = 0;
     let computerScore = 0;
-    let round = 0;
+    let roundNumber = 0;
 
 // Keep playing rounds until one of the competitors reaches 3 points.
 while (playerScore < 3 && computerScore < 3) {
-round++;
-console.group(`Round ${round}`)
+roundNumber++;
+console.group(`Round ${roundNumber}`)
 const roundResult = playRound(getPlayerChoice(), getComputerChoice());
 if (roundResult === "playerWin") {
     ++playerScore;
@@ -15,7 +15,7 @@ if (roundResult === "playerWin") {
     ++computerScore;
 }
 console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
-console.groupEnd(`Round ${round}`);
+console.groupEnd(`Round ${roundNumber}`);
 }
 
 // Declare the winner
