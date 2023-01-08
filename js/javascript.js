@@ -1,4 +1,5 @@
-// Play a game of rock, paper, scissors. Keep playing rounds until one of the players reaches 3 points, at which point exit the loop and declare the winner.
+// Play a game of rock, paper, scissors. Keep playing rounds until one of the 
+// players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3() {
     let playerScore = 0;
     let computerScore = 0;
@@ -33,7 +34,8 @@ if (playerScore > computerScore) {
 console.groupEnd("Game over");
 }
 
-// Play a game of rock, paper, scissors. Play 5 rounds, at which point exit the loop and declare the winner.
+// Play a game of rock, paper, scissors. Play 5 rounds, at which point exit the 
+// loop and declare the winner.
 function play5Rounds() {
     let playerScore = 0;
     let computerScore = 0;
@@ -72,37 +74,46 @@ function playRound(playerChoice, computerChoice) {
 
     if (playerChoice === "rock") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. It's a draw!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. It's a draw!`);
             return "draw";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You lose!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You lose!`);
             return "computerWin";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You win!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You win!`);
             return "playerWin";
         }
     
     } else if (playerChoice === "paper") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You win!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You win!`);
             return "playerWin";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. It's a draw!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. It's a draw!`);
             return "draw";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You lose!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You lose!`);
             return "computerWin";
         }
     
     } else if (playerChoice === "scissors") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You lose!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You lose!`);
             return "computerWin";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. You win!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. You win!`);
             return "playerWin";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. The computer chose ${computerChoice}. It's a draw!`);
+            console.log(`You chose ${playerChoice}. 
+                The computer chose ${computerChoice}. It's a draw!`);
             return "draw";
         }
     }
@@ -112,7 +123,9 @@ function playRound(playerChoice, computerChoice) {
 function getPlayerChoice() {
     const playerChoice = prompt("Select your weapon!").toLowerCase();
 
-    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+    if (playerChoice === "rock" || 
+        playerChoice === "paper" || 
+        playerChoice === "scissors") {
         return playerChoice;
     } else {
         alert("Please select rock, paper, or scissors");
