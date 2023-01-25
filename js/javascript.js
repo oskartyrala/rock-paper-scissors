@@ -1,5 +1,3 @@
-const buttons = document.querySelectorAll("button");
-
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3() {
@@ -134,6 +132,12 @@ function getPlayerChoice() {
         return getPlayerChoice();
     }
 }
+
+// for (button of buttons) {
+//     button.addEventListener("click", () => {
+//         console.log(button.id);
+//     })
+// }
 
 // Generate computer's choice of rock, paper, scissors
 function getComputerChoice() { 
