@@ -1,19 +1,17 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
 const roundCompare = document.querySelector("#round-compare")
+let roundNumber = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
-function playTo3() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundNumber = 0;
-
+function playTo3(e) {
 // Keep playing rounds until one of the competitors reaches 3 points.
-while (playerScore < 3 && computerScore < 3) {
     roundNumber++;
     console.group(`Round ${roundNumber}`);
-    const roundResult = playRound(getPlayerChoice(), getComputerChoice());
+    const roundResult = playRound(e.target.id, getComputerChoice());
     if (roundResult === "playerWin") {
         ++playerScore;
     } else if (roundResult === "computerWin") {
@@ -21,22 +19,28 @@ while (playerScore < 3 && computerScore < 3) {
     };
     console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`);
     console.groupEnd(`Round ${roundNumber}`);
-};
 
-// Declare the winner
-console.group("Game over");
-if (playerScore > computerScore) {
-    console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`Congratulations, you win!`);
-} else if (playerScore < computerScore) {
-    console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`The machine won. Better luck next time!`);
-} else {
-    console.log(`The final score is ${playerScore}:${computerScore}.`);
-    console.log(`It's a draw!`);
-}
-console.groupEnd("Game over");
+    if (playerScore === 3 || computerScore === 3) {
+        gameOver();
+    }
+
 };
+function gameOver() {
+    if (playerScore > computerScore) {
+        console.log(`The final score is ${playerScore}:${computerScore}.`);
+        console.log(`Congratulations, you win!`);
+    } else if (playerScore < computerScore) {
+        console.log(`The final score is ${playerScore}:${computerScore}.`);
+        console.log(`The machine won. Better luck next time!`);
+    } else {
+        console.log(`The final score is ${playerScore}:${computerScore}.`);
+        console.log(`It's a draw!`);
+    }
+    console.log("Doing this");
+    playerScore = 0;
+    computerScore = 0;
+    roundNumber = 0;
+}
 
 // Play a game of rock, paper, scissors. Play 5 rounds, at which point exit the 
 // loop and declare the winner.
@@ -116,7 +120,7 @@ function playRound(playerChoice, computerChoice) {
 
 for (button of buttons) {
     button.addEventListener("click", (e) => {
-        playRound(e.target.id, getComputerChoice());
+        playTo3(e);
     })
 }
 
