@@ -27,33 +27,21 @@ function playRound(playerChoice, computerChoice) {
         return "draw";
     }
 
-    if (playerChoice === "rock") {
-        if (computerChoice === "paper") {
-            roundResult.textContent += " You lose!";
-            return "computerWin";
-        } else if (computerChoice === "scissors") {
+    if (playerChoice === "rock" && computerChoice === "scissors" ||
+        playerChoice === "paper" && computerChoice === "rock" ||
+        playerChoice === "scissors" && computerChoice === "paper") {
+
             roundResult.textContent += " You win!";
             return "playerWin";
-        };
+        }
     
-    } else if (playerChoice === "paper") {
-        if (computerChoice === "rock") {
-            roundResult.textContent += " You win!";
-            return "playerWin";
-        } else if (computerChoice === "scissors") {
+    if (playerChoice === "rock" && computerChoice === "paper" ||
+        playerChoice === "paper" && computerChoice === "scissors" ||
+        playerChoice === "scissors" && computerChoice === "rock") {
+
             roundResult.textContent += " You lose!";
             return "computerWin";
         };
-    
-    } else if (playerChoice === "scissors") {
-        if (computerChoice === "rock") {
-            roundResult.textContent += " You lose!";
-            return "computerWin";
-        } else if (computerChoice === "paper") {
-            roundResult.textContent += " You win!";
-            return "playerWin";
-        };
-    };
     };
 
     // Announces the results and resets the score and round counter.
