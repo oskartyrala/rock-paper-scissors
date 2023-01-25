@@ -66,8 +66,6 @@ function gameOver() {
         finalScore.textContent += ` Congratulations, you win!`;
     } else if (playerLife < computerLife) {
         finalScore.textContent += ` The machine won. Better luck next time!`;
-    } else {
-        finalScore.textContent += ` It's a draw!`;
     }
 
     playerLife = 3;
