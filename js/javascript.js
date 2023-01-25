@@ -76,6 +76,7 @@ function gameOver() {
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3(e) {
+
     finalScore.textContent = "";
     if (roundNumber === 0) {
         for (life of lives) {
@@ -83,8 +84,9 @@ function playTo3(e) {
         }
     }
 
+    console.log(e);
     roundNumber++;
-    const roundResult = playRound(e.target.id, getComputerChoice());
+    const roundResult = playRound(e.currentTarget.id, getComputerChoice());
     if (roundResult === "playerWin") {
         const currentLife = document.getElementById(`machine-${computerLife}`);
         currentLife.classList.remove("full");

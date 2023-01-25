@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
@@ -22,6 +25,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    height: 100px;
+
 }
 
 .lifebar {
@@ -36,16 +42,39 @@ body {
 
 .skills {
     display: flex;
-    padding: 10px;
+    padding: 30px;
     gap: 20px;
 }
 
-button {
+.skill {
     height: 85px;
     width: 85px;
     border-radius: 50%;
+    background-color: white;
+    border: none;
+    filter: drop-shadow(3px 3px 5px black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .full {
     background-color: green;
+}
+
+.icon {
+    width: 70%;
+    height: 70%;
+}
+
+#machine .fighter {
+    font-family: Wallpoet;
+    font-size: 3rem;
+    margin: 0;
+}
+
+#man .fighter {
+    font-family: "East Sea Dokdo";
+    font-size: 4rem;
+    margin: 0;
 }
