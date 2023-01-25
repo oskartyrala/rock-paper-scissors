@@ -42,11 +42,14 @@ function gameOver() {
 // Play one round of rock, paper, scissors
 function playRound(playerChoice, computerChoice) {
     roundResult.textContent = `You chose ${playerChoice}. The computer chose ${computerChoice}.`
+
+    if (playerChoice === computerChoice) {
+        roundResult.textContent += " It's a draw!";
+        return "draw";
+    }
+
     if (playerChoice === "rock") {
-        if (computerChoice === "rock") {
-            roundResult.textContent += " It's a draw!";
-            return "draw";
-        } else if (computerChoice === "paper") {
+        if (computerChoice === "paper") {
             roundResult.textContent += " You lose!";
             return "computerWin";
         } else if (computerChoice === "scissors") {
@@ -58,9 +61,6 @@ function playRound(playerChoice, computerChoice) {
         if (computerChoice === "rock") {
             roundResult.textContent += " You win!";
             return "playerWin";
-        } else if (computerChoice === "paper") {
-            roundResult.textContent += " It's a draw!";
-            return "draw";
         } else if (computerChoice === "scissors") {
             roundResult.textContent += " You lose!";
             return "computerWin";
@@ -73,9 +73,6 @@ function playRound(playerChoice, computerChoice) {
         } else if (computerChoice === "paper") {
             roundResult.textContent += " You win!";
             return "playerWin";
-        } else if (computerChoice === "scissors") {
-            roundResult.textContent += " It's a draw!";
-            return "draw";
         }
     };
     };
