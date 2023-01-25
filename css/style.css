@@ -11,6 +11,7 @@ body {
 
 .section {
     flex: 1;
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,4 +44,8 @@ button {
     height: 85px;
     width: 85px;
     border-radius: 50%;
+}
+
+.full {
+    background-color: green;
 }

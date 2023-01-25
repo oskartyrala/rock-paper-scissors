@@ -2,9 +2,10 @@ const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
 const currentTally = document.querySelector("#current-tally");
 const finalScore = document.querySelector("#final-score");
+const lives = document.querySelectorAll(".life");
 let roundNumber = 0;
-let playerScore = 0;
-let computerScore = 0;
+let playerLife = 3;
+let computerLife = 3;
 
 // Generate computer's choice of rock, paper, scissors
 function getComputerChoice() { 
@@ -59,18 +60,18 @@ function playRound(playerChoice, computerChoice) {
 
     // Announces the results and resets the score and round counter.
 function gameOver() {
-    finalScore.textContent = `The final score is ${playerScore}:${computerScore}.`;
+    finalScore.textContent = `The final score is ${playerLife}:${computerLife}.`;
 
-    if (playerScore > computerScore) {
+    if (playerLife > computerLife) {
         finalScore.textContent += ` Congratulations, you win!`;
-    } else if (playerScore < computerScore) {
+    } else if (playerLife < computerLife) {
         finalScore.textContent += ` The machine won. Better luck next time!`;
     } else {
         finalScore.textContent += ` It's a draw!`;
     }
 
-    playerScore = 0;
-    computerScore = 0;
+    playerLife = 3;
+    computerLife = 3;
     roundNumber = 0;
 }
 
@@ -78,19 +79,28 @@ function gameOver() {
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3(e) {
     finalScore.textContent = "";
+    if (roundNumber === 0) {
+        for (life of lives) {
+            life.classList.add("full");
+        }
+    }
 
     roundNumber++;
     const roundResult = playRound(e.target.id, getComputerChoice());
     if (roundResult === "playerWin") {
-        ++playerScore;
+        const currentLife = document.getElementById(`machine-${computerLife}`);
+        currentLife.classList.remove("full");
+        --computerLife;
     } else if (roundResult === "computerWin") {
-        ++computerScore;
+        const currentLife = document.getElementById(`player-${playerLife}`);
+        currentLife.classList.remove("full");
+        --playerLife;
     };
 
-    currentTally.textContent = `Player score: ${playerScore}. Computer score: ${computerScore}`;
+    currentTally.textContent = `Player life: ${playerLife}. Computer life: ${computerLife}`;
 
     // Stop playing and announce the results one of the competitors reaches 3 points.
-    if (playerScore === 3 || computerScore === 3) {
+    if (playerLife === 0 || computerLife === 0) {
         gameOver();
     };
 };
