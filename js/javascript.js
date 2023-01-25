@@ -121,23 +121,9 @@ function playRound(playerChoice, computerChoice) {
     };
     };
 
-// Ask the player's choice of rock, paper, scissors
-function getPlayerChoice() {
-    const playerChoice = prompt("Select your weapon!").toLowerCase();
-
-    if (playerChoice === "rock" || 
-        playerChoice === "paper" || 
-        playerChoice === "scissors") {
-        return playerChoice;
-    } else {
-        alert("Please select rock, paper, or scissors");
-        return getPlayerChoice();
-    }
-}
-
 for (button of buttons) {
-    button.addEventListener("click", () => {
-        console.log(button.id);
+    button.addEventListener("click", (e) => {
+        playRound(e.target.id, getComputerChoice());
     })
 }
 
