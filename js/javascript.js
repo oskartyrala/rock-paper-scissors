@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll("button");
-const roundResult = document.querySelector("#round-result");
 const lives = document.querySelectorAll(".life");
+const manFight = document.querySelector("#man-fight");
+const machineFight = document.querySelector("#machine-fight");
 let roundNumber = 0;
 let manLife = 3;
 let machineLife = 3;
@@ -20,10 +21,18 @@ function getmachineChoice() {
 
 // Play one round of rock, paper, scissors
 function playRound(manChoice, machineChoice) {
-    roundResult.textContent = `You chose ${manChoice}. The machine chose ${machineChoice}.`;
+
+    document.getElementById("rock").style.border = "";
+    document.getElementById("scissors").style.border = "";
+    document.getElementById("paper").style.border = "";
+    document.getElementById(manChoice).style.border = "3px solid green";
+
+    document.getElementById("machine-rock").style.border = "";
+    document.getElementById("machine-scissors").style.border = "";
+    document.getElementById("machine-paper").style.border = "";
+    document.getElementById(`machine-${machineChoice}`).style.border = "3px solid blue";
 
     if (manChoice === machineChoice) {
-        roundResult.textContent += " It's a draw!";
         return "draw";
     }
 
@@ -31,7 +40,6 @@ function playRound(manChoice, machineChoice) {
         manChoice === "paper" && machineChoice === "rock" ||
         manChoice === "scissors" && machineChoice === "paper") {
 
-            roundResult.textContent += " You win!";
             return "manWin";
         }
     
@@ -39,7 +47,6 @@ function playRound(manChoice, machineChoice) {
         manChoice === "paper" && machineChoice === "scissors" ||
         manChoice === "scissors" && machineChoice === "rock") {
 
-            roundResult.textContent += " You lose!";
             return "machineWin";
         };
     };
@@ -67,7 +74,6 @@ function gameOver() {
     reset.textContent = "Reset";
 
     reset.addEventListener("click", () => {
-        roundResult.textContent = "";
         popup.style.display = "none";
         for (life of lives) {
             life.classList.add("full");

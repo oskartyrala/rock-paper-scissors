@@ -111,3 +111,13 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+#man-fight {
+    border: 1px solid red;
+    flex: 1;
+}
+
+#machine-fight {
+    border: 1px solid red;
+    flex: 1;
+}
