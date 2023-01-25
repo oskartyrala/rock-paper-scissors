@@ -1,3 +1,5 @@
+const buttons = document.querySelectorAll("button");
+
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3() {
