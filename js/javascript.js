@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
-const finalScore = document.querySelector("#final-score");
 const lives = document.querySelectorAll(".life");
 let roundNumber = 0;
 let playerLife = 3;
@@ -59,13 +58,43 @@ function playRound(playerChoice, computerChoice) {
 
     // Announces the results and resets the score and round counter.
 function gameOver() {
-    finalScore.textContent = `The final score is ${playerLife}:${computerLife}.`;
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
 
     if (playerLife > computerLife) {
-        finalScore.textContent += ` Congratulations, you win!`;
+        const result = document.createElement("p");
+        result.textContent = `Congratulations, you win!`;
+        popup.appendChild(result);
     } else if (playerLife < computerLife) {
-        finalScore.textContent += ` The machine won. Better luck next time!`;
+        const result = document.createElement("p");
+        result.textContent = `The machine won. Better luck next time!`;
+        popup.appendChild(result);
     }
+
+    const reset = document.createElement("button");
+    reset.textContent = "Reset";
+
+    reset.addEventListener("click", () => {
+        roundResult.textContent = "";
+        popup.style.display = "none";
+        for (life of lives) {
+            life.classList.add("full");
+        popup.remove();
+        reset.remove();
+        document.getElementById("rock").disabled = false;
+        document.getElementById("paper").disabled = false;
+        document.getElementById("scissors").disabled = false;
+        }
+
+    })
+
+    popup.appendChild(reset);
+
+    document.body.appendChild(popup);
 
     playerLife = 3;
     computerLife = 3;
@@ -76,14 +105,6 @@ function gameOver() {
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3(e) {
 
-    finalScore.textContent = "";
-    if (roundNumber === 0) {
-        for (life of lives) {
-            life.classList.add("full");
-        }
-    }
-
-    console.log(e);
     roundNumber++;
     const roundResult = playRound(e.currentTarget.id, getComputerChoice());
     if (roundResult === "playerWin") {
@@ -108,3 +129,4 @@ for (button of buttons) {
         playTo3(e);
     });
 };
+

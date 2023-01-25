@@ -79,6 +79,28 @@ body {
     margin: 0;
 }
 
-button:hover {
+.skills button:hover {
     border: 2px solid gold;
+}
+
+.cover {
+    position: absolute;
+    background-color: #202024;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup {
+    position: absolute;
+    height: 200px;
+    width: 400px;
+    background-color: #202024;
+    top: calc(50% - 100px);
+    left: calc(50% - 200px);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
