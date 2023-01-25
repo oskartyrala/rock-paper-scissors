@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
-const currentTally = document.querySelector("#current-tally");
 const finalScore = document.querySelector("#final-score");
 const lives = document.querySelectorAll(".life");
 let roundNumber = 0;
@@ -96,8 +95,6 @@ function playTo3(e) {
         currentLife.classList.remove("full");
         --playerLife;
     };
-
-    currentTally.textContent = `Player life: ${playerLife}. Computer life: ${computerLife}`;
 
     // Stop playing and announce the results one of the competitors reaches 3 points.
     if (playerLife === 0 || computerLife === 0) {
