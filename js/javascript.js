@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
-const roundCompare = document.querySelector("#round-compare")
+const roundCompare = document.querySelector("#round-compare");
+const currentTally = document.querySelector("#current-tally");
+const finalScore = document.querySelector("#final-score");
 let roundNumber = 0;
 let playerScore = 0;
 let computerScore = 0;
@@ -8,17 +10,16 @@ let computerScore = 0;
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
 function playTo3(e) {
+    finalScore.textContent = "";
 // Keep playing rounds until one of the competitors reaches 3 points.
     roundNumber++;
-    console.group(`Round ${roundNumber}`);
     const roundResult = playRound(e.target.id, getComputerChoice());
     if (roundResult === "playerWin") {
         ++playerScore;
     } else if (roundResult === "computerWin") {
         ++computerScore;
     };
-    console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`);
-    console.groupEnd(`Round ${roundNumber}`);
+    currentTally.textContent = `Player score: ${playerScore}. Computer score: ${computerScore}`;
 
     if (playerScore === 3 || computerScore === 3) {
         gameOver();
@@ -26,17 +27,14 @@ function playTo3(e) {
 
 };
 function gameOver() {
+    finalScore.textContent = `The final score is ${playerScore}:${computerScore}.`;
     if (playerScore > computerScore) {
-        console.log(`The final score is ${playerScore}:${computerScore}.`);
-        console.log(`Congratulations, you win!`);
+        finalScore.textContent += ` Congratulations, you win!`;
     } else if (playerScore < computerScore) {
-        console.log(`The final score is ${playerScore}:${computerScore}.`);
-        console.log(`The machine won. Better luck next time!`);
+        finalScore.textContent += ` The machine won. Better luck next time!`;
     } else {
-        console.log(`The final score is ${playerScore}:${computerScore}.`);
-        console.log(`It's a draw!`);
+        finalScore.textContent += ` It's a draw!`;
     }
-    console.log("Doing this");
     playerScore = 0;
     computerScore = 0;
     roundNumber = 0;
