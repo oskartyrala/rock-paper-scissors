@@ -1,4 +1,6 @@
 const buttons = document.querySelectorAll("button");
+const roundResult = document.querySelector("#round-result");
+const roundCompare = document.querySelector("#round-compare")
 
 // Play a game of rock, paper, scissors. Keep playing rounds until one of the 
 // players reaches 3 points, at which point exit the loop and declare the winner.
@@ -73,49 +75,40 @@ console.groupEnd("Game over");
 
 // Play one round of rock, paper, scissors
 function playRound(playerChoice, computerChoice) {
-
+    roundCompare.textContent = `You chose ${playerChoice}. The computer chose ${computerChoice}.`
     if (playerChoice === "rock") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. It's a draw!`);
+            roundResult.textContent =  "It's a draw!";
             return "draw";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You lose!`);
+            roundResult.textContent =  "You lose!";
             return "computerWin";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You win!`);
+            roundResult.textContent =  "You win!";
             return "playerWin";
         }
     
     } else if (playerChoice === "paper") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You win!`);
+            roundResult.textContent =  "You win!";
             return "playerWin";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. It's a draw!`);
+            roundResult.textContent =  "It's a draw!";
             return "draw";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You lose!`);
+            roundResult.textContent =  "You lose!";
             return "computerWin";
         }
     
     } else if (playerChoice === "scissors") {
         if (computerChoice === "rock") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You lose!`);
+            roundResult.textContent =  "You lose!";
             return "computerWin";
         } else if (computerChoice === "paper") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. You win!`);
+            roundResult.textContent =  "You win!";
             return "playerWin";
         } else if (computerChoice === "scissors") {
-            console.log(`You chose ${playerChoice}. 
-                The computer chose ${computerChoice}. It's a draw!`);
+            roundResult.textContent =  "It's a draw!";
             return "draw";
         }
     };
