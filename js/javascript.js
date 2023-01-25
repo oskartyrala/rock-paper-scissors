@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector("#round-result");
-const roundCompare = document.querySelector("#round-compare");
 const currentTally = document.querySelector("#current-tally");
 const finalScore = document.querySelector("#final-score");
 let roundNumber = 0;
@@ -42,40 +41,40 @@ function gameOver() {
 
 // Play one round of rock, paper, scissors
 function playRound(playerChoice, computerChoice) {
-    roundCompare.textContent = `You chose ${playerChoice}. The computer chose ${computerChoice}.`
+    roundResult.textContent = `You chose ${playerChoice}. The computer chose ${computerChoice}.`
     if (playerChoice === "rock") {
         if (computerChoice === "rock") {
-            roundResult.textContent =  "It's a draw!";
+            roundResult.textContent += " It's a draw!";
             return "draw";
         } else if (computerChoice === "paper") {
-            roundResult.textContent =  "You lose!";
+            roundResult.textContent += " You lose!";
             return "computerWin";
         } else if (computerChoice === "scissors") {
-            roundResult.textContent =  "You win!";
+            roundResult.textContent += " You win!";
             return "playerWin";
         }
     
     } else if (playerChoice === "paper") {
         if (computerChoice === "rock") {
-            roundResult.textContent =  "You win!";
+            roundResult.textContent += " You win!";
             return "playerWin";
         } else if (computerChoice === "paper") {
-            roundResult.textContent =  "It's a draw!";
+            roundResult.textContent += " It's a draw!";
             return "draw";
         } else if (computerChoice === "scissors") {
-            roundResult.textContent =  "You lose!";
+            roundResult.textContent += " You lose!";
             return "computerWin";
         }
     
     } else if (playerChoice === "scissors") {
         if (computerChoice === "rock") {
-            roundResult.textContent =  "You lose!";
+            roundResult.textContent += " You lose!";
             return "computerWin";
         } else if (computerChoice === "paper") {
-            roundResult.textContent =  "You win!";
+            roundResult.textContent += " You win!";
             return "playerWin";
         } else if (computerChoice === "scissors") {
-            roundResult.textContent =  "It's a draw!";
+            roundResult.textContent += " It's a draw!";
             return "draw";
         }
     };
