@@ -113,11 +113,23 @@ body {
 }
 
 #man-fight {
-    border: 1px solid red;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #machine-fight {
-    border: 1px solid red;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#man-fight img {
+    height: 80%;
+}
+
+#machine-fight img {
+    height: 80%;
 }

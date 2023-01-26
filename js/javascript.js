@@ -2,6 +2,8 @@ const buttons = document.querySelectorAll("button");
 const lives = document.querySelectorAll(".life");
 const manFight = document.querySelector("#man-fight");
 const machineFight = document.querySelector("#machine-fight");
+const manLarge = document.querySelector("#man-large");
+const machineLarge = document.querySelector("#machine-large");
 let roundNumber = 0;
 let manLife = 3;
 let machineLife = 3;
@@ -31,6 +33,9 @@ function playRound(manChoice, machineChoice) {
     document.getElementById("machine-scissors").style.border = "";
     document.getElementById("machine-paper").style.border = "";
     document.getElementById(`machine-${machineChoice}`).style.border = "3px solid blue";
+
+    manLarge.src = `./img/man-${manChoice}.svg`;
+    machineLarge.src = `./img/machine-${machineChoice}.svg`;
 
     if (manChoice === machineChoice) {
         return "draw";
@@ -74,6 +79,15 @@ function gameOver() {
     reset.textContent = "Reset";
 
     reset.addEventListener("click", () => {
+        document.getElementById("rock").style.border = "";
+        document.getElementById("scissors").style.border = "";
+        document.getElementById("paper").style.border = "";
+    
+        document.getElementById("machine-rock").style.border = "";
+        document.getElementById("machine-scissors").style.border = "";
+        document.getElementById("machine-paper").style.border = "";
+        manLarge.src = "";
+        machineLarge.src = "";
         popup.style.display = "none";
         for (life of lives) {
             life.classList.add("full");
