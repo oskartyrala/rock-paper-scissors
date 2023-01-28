@@ -1,8 +1,29 @@
-const buttons = document.querySelectorAll("button");
-const lives = document.querySelectorAll(".life");
+const hearts = document.querySelectorAll(".heart");
+const skills = document.querySelectorAll(".skill");
+const skillButtons = document.querySelectorAll("button.skill");
 let roundNumber = 0;
 let manLife = 3;
 let machineLife = 3;
+
+for (skillButton of skillButtons) {
+    skillButton.addEventListener("click", (e) => {
+        playTo3(e);
+    });
+};
+
+// Play a game of rock, paper, scissors. Keep playing rounds until one of the 
+// players reaches 3 points, at which point launch the end-game procedure.
+function playTo3(e) {
+
+    roundNumber++;
+
+    const roundResult = playRound(e.currentTarget.id, getmachineChoice());
+
+    // Stop playing and announce the results one of the competitors reaches 3 points.
+    if (manLife === 0 || machineLife === 0) {
+        gameOver();
+    };
+};
 
 // Generate machine's choice of rock, paper, scissors
 function getmachineChoice() { 
@@ -17,153 +38,121 @@ function getmachineChoice() {
     };
 };
 
-// Play one round of rock, paper, scissors
+// Play one round of rock, paper, scissors and display the result
 function playRound(manChoice, machineChoice) {
 
-    document.getElementById("rock").style.border = "";
-    document.getElementById("scissors").style.border = "";
-    document.getElementById("paper").style.border = "";
+    // Clear selection highlights
+    for (skill of skills) {
+        skill.classList.remove("win-border");
+        skill.classList.remove("lose-border");
+        skill.classList.remove("draw-border");
+    }
 
-    document.getElementById("machine-rock").style.border = "";
-    document.getElementById("machine-scissors").style.border = "";
-    document.getElementById("machine-paper").style.border = "";
+    const manSkill = document.getElementById(manChoice);
+    const machineSkill = document.getElementById(`machine-${machineChoice}`);
 
+    // Draw scenario
     if (manChoice === machineChoice) {
+
+        // Highlight chosen skills
+        manSkill.classList.add("draw-border");
+        machineSkill.classList.add("draw-border");
+
         return "draw";
     }
 
+    // Player win scenario
     if (manChoice === "rock" && machineChoice === "scissors" ||
         manChoice === "paper" && machineChoice === "rock" ||
         manChoice === "scissors" && machineChoice === "paper") {
 
-            return "manWin";
+        // Reduce machine's life
+        const currentLife = document.getElementById(`machine-${machineLife}`);
+        currentLife.src = `./img/heart-empty-icon.svg`;
+        --machineLife;
+
+        // Highlight chosen skills
+        manSkill.classList.add("win-border");
+        machineSkill.classList.add("lose-border");
+        
+        return "manWin";
         }
     
+    // Computer win scenario
     if (manChoice === "rock" && machineChoice === "paper" ||
         manChoice === "paper" && machineChoice === "scissors" ||
         manChoice === "scissors" && machineChoice === "rock") {
+
+        // Reduce player's life
+        const currentLife = document.getElementById(`man-${manLife}`);
+        currentLife.src = `./img/heart-empty-icon.svg`;
+        --manLife;
+
+        //Highlight chosen skills
+        manSkill.classList.add("lose-border");
+        machineSkill.classList.add("win-border");
 
             return "machineWin";
         };
     };
 
-    // Announces the results and resets the score and round counter.
+    // Announce the results and resets the score and round counter.
 function gameOver() {
-    document.getElementById("rock").disabled = true;
-    document.getElementById("paper").disabled = true;
-    document.getElementById("scissors").disabled = true;
 
+    for (skillButton of skillButtons) {
+        skillButton.disabled = true;
+    }
+
+    // Darken the background
     const cover = document.createElement("div");
     cover.classList.add("cover");
     document.body.appendChild(cover);
 
+    // Create popup
     const popup = document.createElement("div");
     popup.classList.add("popup");
 
+    // Display final result
+    const result = document.createElement("p");
+
     if (manLife > machineLife) {
-        const result = document.createElement("p");
         result.textContent = `Congratulations, you win!`;
-        popup.appendChild(result);
     } else if (manLife < machineLife) {
-        const result = document.createElement("p");
         result.textContent = `The machine won. Better luck next time!`;
-        popup.appendChild(result);
     }
 
+    popup.appendChild(result);
+
+    // Create button to reset the game
     const reset = document.createElement("button");
     reset.classList.add("reset");
     reset.textContent = "Play again";
 
     reset.addEventListener("click", () => {
-        document.getElementById("rock").style.border = "";
-        document.getElementById("scissors").style.border = "";
-        document.getElementById("paper").style.border = "";
-    
-        document.getElementById("machine-rock").style.border = "";
-        document.getElementById("machine-scissors").style.border = "";
-        document.getElementById("machine-paper").style.border = "";
-        popup.style.display = "none";
-        for (life of lives) {
-            life.src = "./img/heart-full-icon.svg";
+        for (skill of skills) {
+            skill.classList.remove("win-border");
+            skill.classList.remove("lose-border");
+            skill.classList.remove("draw-border");
         }
+    
+        for (skillButton of skillButtons) {
+            skillButton.disabled = false;
+        }
+    
+        for (heart of hearts) {
+            heart.src = "./img/heart-full-icon.svg";
+        }
+    
         cover.remove();
         popup.remove();
         reset.remove();
-        document.getElementById("rock").disabled = false;
-        document.getElementById("paper").disabled = false;
-        document.getElementById("scissors").disabled = false;
-
     })
 
     popup.appendChild(reset);
-
     document.body.appendChild(popup);
 
+    // Reset game state
     manLife = 3;
     machineLife = 3;
     roundNumber = 0;
 }
-
-// Play a game of rock, paper, scissors. Keep playing rounds until one of the 
-// mans reaches 3 points, at which point exit the loop and declare the winner.
-function playTo3(e) {
-
-    roundNumber++;
-
-
-    const roundResult = playRound(e.currentTarget.id, getmachineChoice());
-    if (roundResult === "manWin") {
-        const currentLife = document.getElementById(`machine-${machineLife}`);
-        currentLife.src = `./img/heart-empty-icon.svg`;
-        document.getElementById(e.currentTarget.id).style.border = "3px solid #41E2BA";
-        switch (e.currentTarget.id) {
-            case "rock":
-                document.getElementById("machine-scissors").style.border = "3px solid #E86A92";
-                break;
-
-            case "paper":
-                document.getElementById("machine-rock").style.border = "3px solid #E86A92";
-                break;
-
-            case "scissors":
-                document.getElementById("machine-paper").style.border = "3px solid #E86A92";
-                break;
-        }
-        --machineLife;
-    } else if (roundResult === "machineWin") {
-        const currentLife = document.getElementById(`man-${manLife}`);
-        currentLife.src = `./img/heart-empty-icon.svg`;
-        document.getElementById(e.currentTarget.id).style.border = "3px solid #E86A92";
-        switch (e.currentTarget.id) {
-            case "rock":
-                document.getElementById("machine-paper").style.border = "3px solid #41E2BA";
-                break;
-
-            case "paper":
-                document.getElementById("machine-scissors").style.border = "3px solid #41E2BA";
-                break;
-
-            case "scissors":
-                document.getElementById("machine-rock").style.border = "3px solid #41E2BA";
-                break;
-        }
-        --manLife;
-    } else if (roundResult === "draw") {
-        console.log("Doing this");
-        document.getElementById(e.currentTarget.id).style.border = "3px solid #FFD700";
-        document.getElementById(`machine-${e.currentTarget.id}`).style.border = "3px solid #FFD700";
-    }
-
-    // Stop playing and announce the results one of the competitors reaches 3 points.
-    if (manLife === 0 || machineLife === 0) {
-        gameOver();
-    };
-};
-
-
-for (button of buttons) {
-    button.addEventListener("click", (e) => {
-        playTo3(e);
-    });
-};
-

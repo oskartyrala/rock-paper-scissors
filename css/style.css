@@ -14,6 +14,13 @@ body {
     gap: 50px;
     color: #F7F7F9;
     font-family: "Press Start 2P", monospace;
+    font-size: 14px;
+}
+
+button:hover {
+    cursor: pointer;
+    border: 2px solid gold;
+    scale: 1.1;
 }
 
 .section {
@@ -21,31 +28,37 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
     height: 370px;
     width: 560px;
+    padding: 50px;
     border: 2px solid #FFD700;
 }
+
+/* Hero section */
 
 .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    margin-top: 50px;
     gap: 10px;
 }
 
-.lifebar {
-    display: flex;
+.title {
+    font-size: 32px;
+    margin: 0;
 }
 
-.life {
+.heart {
     width: 23px;
 }
 
+/* End of hero section */
+
+/* Skillset section */
+
 .skillset {
     display: flex;
-    padding: 30px;
     gap: 20px;
 }
 
@@ -54,71 +67,81 @@ body {
     width: 90px;
     border: 2px solid #F7F7F9;
     display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #2B2D42;
     position: relative;
 }
 
-.icon {
+.man .skill {
+    filter: drop-shadow(2px 2px 3px black);
+}
+
+.skill > img {
     width: 75px;
     position: absolute;
     bottom: 0px;
     right: 0px;
 }
 
-.fighter {
-    font-size: 32px;
-    margin: 0;
+.win-border {
+    border: 3px solid #41E2BA;
 }
 
-button:hover {
-    border: 2px solid gold;
+.lose-border {
+    border: 3px solid #E86A92;
 }
+
+.draw-border {
+    border: 3px solid #FFD700;
+}
+
+/* End of skillset section */
+
+/* Game-over section */
 
 .cover {
     position: absolute;
     background-color: #202024;
     opacity: 0.8;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .popup {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    align-items: center;
+
+    box-sizing: border-box;
+
     position: absolute;
-    height: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 200px);
+
+    height: 175px;
     width: 400px;
+    padding: 20px;
+    gap: 5px;
+
     background-color: #2B2D42;
     border: 2px solid #F7F7F9;
     border-radius: 5px;
-    top: calc(50% - 100px);
-    left: calc(50% - 200px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
-    font-size: 12px;
-    box-sizing: border-box;
     text-align: center;
-    padding: 20px;
+    font-size: 12px;
 }
 
 .reset {
-    font-size: 12px;
-    background-color: #2B2D42;
-    color: #F7F7F9;
-    border: 2px solid #F7F7F9;
-    border-radius: 2Spx;
-    padding: 10px 20px;
     box-sizing: border-box;
+    padding: 10px 20px;
+
+    background-color: #2B2D42;
+    border: 2px solid #F7F7F9;
+    border-radius: 2px;
+
     font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+    color: #F7F7F9;
 }
 
-.prompt {
-    font-size: 14px;
-    margin-bottom: 50px;
-}
+/* End of game-over section */
