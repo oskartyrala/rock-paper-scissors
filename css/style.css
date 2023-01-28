@@ -71,7 +71,7 @@ button:hover {
 }
 
 .man .skill {
-    filter: drop-shadow(2px 2px 3px black);
+    box-shadow: inset 2px 2px 3px black;
 }
 
 .skill > img {
