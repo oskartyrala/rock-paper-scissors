@@ -19,7 +19,6 @@ body {
 
 button:hover {
     cursor: pointer;
-    border: 2px solid gold;
     scale: 1.1;
 }
 
