@@ -1,9 +1,5 @@
 const buttons = document.querySelectorAll("button");
 const lives = document.querySelectorAll(".life");
-const manFight = document.querySelector("#man-fight");
-const machineFight = document.querySelector("#machine-fight");
-const manLarge = document.querySelector("#man-large");
-const machineLarge = document.querySelector("#machine-large");
 let roundNumber = 0;
 let manLife = 3;
 let machineLife = 3;
@@ -27,15 +23,10 @@ function playRound(manChoice, machineChoice) {
     document.getElementById("rock").style.border = "";
     document.getElementById("scissors").style.border = "";
     document.getElementById("paper").style.border = "";
-    document.getElementById(manChoice).style.border = "3px solid green";
 
     document.getElementById("machine-rock").style.border = "";
     document.getElementById("machine-scissors").style.border = "";
     document.getElementById("machine-paper").style.border = "";
-    document.getElementById(`machine-${machineChoice}`).style.border = "3px solid blue";
-
-    manLarge.src = `./img/man-${manChoice}.svg`;
-    machineLarge.src = `./img/machine-${machineChoice}.svg`;
 
     if (manChoice === machineChoice) {
         return "draw";
@@ -62,6 +53,10 @@ function gameOver() {
     document.getElementById("paper").disabled = true;
     document.getElementById("scissors").disabled = true;
 
+    const cover = document.createElement("div");
+    cover.classList.add("cover");
+    document.body.appendChild(cover);
+
     const popup = document.createElement("div");
     popup.classList.add("popup");
 
@@ -76,7 +71,8 @@ function gameOver() {
     }
 
     const reset = document.createElement("button");
-    reset.textContent = "Reset";
+    reset.classList.add("reset");
+    reset.textContent = "Play again";
 
     reset.addEventListener("click", () => {
         document.getElementById("rock").style.border = "";
@@ -86,17 +82,16 @@ function gameOver() {
         document.getElementById("machine-rock").style.border = "";
         document.getElementById("machine-scissors").style.border = "";
         document.getElementById("machine-paper").style.border = "";
-        manLarge.src = "";
-        machineLarge.src = "";
         popup.style.display = "none";
         for (life of lives) {
-            life.classList.add("full");
+            life.src = "./img/heart-full-icon.svg";
+        }
+        cover.remove();
         popup.remove();
         reset.remove();
         document.getElementById("rock").disabled = false;
         document.getElementById("paper").disabled = false;
         document.getElementById("scissors").disabled = false;
-        }
 
     })
 
@@ -114,16 +109,50 @@ function gameOver() {
 function playTo3(e) {
 
     roundNumber++;
+
+
     const roundResult = playRound(e.currentTarget.id, getmachineChoice());
     if (roundResult === "manWin") {
         const currentLife = document.getElementById(`machine-${machineLife}`);
-        currentLife.classList.remove("full");
+        currentLife.src = `./img/heart-empty-icon.svg`;
+        document.getElementById(e.currentTarget.id).style.border = "3px solid #41E2BA";
+        switch (e.currentTarget.id) {
+            case "rock":
+                document.getElementById("machine-scissors").style.border = "3px solid #E86A92";
+                break;
+
+            case "paper":
+                document.getElementById("machine-rock").style.border = "3px solid #E86A92";
+                break;
+
+            case "scissors":
+                document.getElementById("machine-paper").style.border = "3px solid #E86A92";
+                break;
+        }
         --machineLife;
     } else if (roundResult === "machineWin") {
         const currentLife = document.getElementById(`man-${manLife}`);
-        currentLife.classList.remove("full");
+        currentLife.src = `./img/heart-empty-icon.svg`;
+        document.getElementById(e.currentTarget.id).style.border = "3px solid #E86A92";
+        switch (e.currentTarget.id) {
+            case "rock":
+                document.getElementById("machine-paper").style.border = "3px solid #41E2BA";
+                break;
+
+            case "paper":
+                document.getElementById("machine-scissors").style.border = "3px solid #41E2BA";
+                break;
+
+            case "scissors":
+                document.getElementById("machine-rock").style.border = "3px solid #41E2BA";
+                break;
+        }
         --manLife;
-    };
+    } else if (roundResult === "draw") {
+        console.log("Doing this");
+        document.getElementById(e.currentTarget.id).style.border = "3px solid #FFD700";
+        document.getElementById(`machine-${e.currentTarget.id}`).style.border = "3px solid #FFD700";
+    }
 
     // Stop playing and announce the results one of the competitors reaches 3 points.
     if (manLife === 0 || machineLife === 0) {

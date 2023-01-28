@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html, body {
     margin: 0;
@@ -9,23 +8,22 @@ html, body {
 
 body {
     display: flex;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    background-color: #2B2D42;
+    gap: 50px;
+    color: #F7F7F9;
+    font-family: "Press Start 2P", monospace;
 }
 
 .section {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-.section#man {
-    border-right: 1px solid black;
-}
-
-.section#machine {
-    border-left: 1px solid black;
+    height: 370px;
+    width: 560px;
+    border: 2px solid #FFD700;
 }
 
 .hero {
@@ -33,8 +31,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 100px;
-
+    margin-top: 50px;
+    gap: 10px;
 }
 
 .lifebar {
@@ -42,94 +40,85 @@ body {
 }
 
 .life {
-    width: 100px;
-    height: 20px;
-    border: 1px solid black;
+    width: 23px;
 }
 
-.skills {
+.skillset {
     display: flex;
     padding: 30px;
     gap: 20px;
 }
 
 .skill {
-    height: 85px;
-    width: 85px;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    filter: drop-shadow(3px 3px 5px black);
+    height: 90px;
+    width: 90px;
+    border: 2px solid #F7F7F9;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.full {
-    background-color: green;
+    background-color: #2B2D42;
+    position: relative;
 }
 
 .icon {
-    width: 70%;
-    height: 70%;
+    width: 75px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 
-#machine .fighter {
-    font-family: Wallpoet;
-    font-size: 3rem;
+.fighter {
+    font-size: 32px;
     margin: 0;
 }
 
-#man .fighter {
-    font-family: "East Sea Dokdo";
-    font-size: 4rem;
-    margin: 0;
-}
-
-.skills button:hover {
+button:hover {
     border: 2px solid gold;
 }
 
 .cover {
     position: absolute;
     background-color: #202024;
-    opacity: 0.5;
+    opacity: 0.8;
     width: 100vw;
     height: 100vh;
 }
 
 .popup {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
     position: absolute;
     height: 200px;
     width: 400px;
-    background-color: #202024;
+    background-color: #2B2D42;
+    border: 2px solid #F7F7F9;
+    border-radius: 5px;
     top: calc(50% - 100px);
     left: calc(50% - 200px);
-    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    font-size: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
 }
 
-#man-fight {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.reset {
+    font-size: 12px;
+    background-color: #2B2D42;
+    color: #F7F7F9;
+    border: 2px solid #F7F7F9;
+    border-radius: 2Spx;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-family: "Press Start 2P", monospace;
 }
 
-#machine-fight {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#man-fight img {
-    height: 80%;
-}
-
-#machine-fight img {
-    height: 80%;
+.prompt {
+    font-size: 14px;
+    margin-bottom: 50px;
 }
